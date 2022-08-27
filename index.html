@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="estilo.css">
+    <title>Formulário/JavaScript</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-3 text-center">
+            <h1>Formulário de Cadastro Pessoa Física</h1>
+            <p>(Este formulário não persisti os dados - Utilizado JavaScript)</p>
+        </div>
+
+        <form id="formulario">
+            <h2 class="mb-2 fs-5">Informações do Perfil:</h2>
+
+            <div class="col-md-12 mt-6">
+                <div class="row">
+                    <div class="col mb-2">
+                        <label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control maiusculo" id="nome" pattern="^[A-Za-z]+$"
+                            placeholder="primeiro nome - somente letras, sem espaços" maxlength="30" required>
+                    </div>
+                    <div class="col mb-2">
+                        <label for="sobrenome" class="form-label">Sobrenome <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control maiusculo" id="sobrenome" pattern="^[A-Za-z]+$"
+                            placeholder="último nome - somente letras, sem espaços" maxlength="20" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-6">
+                <div class="row">
+                    <div class="col mb-2">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="email"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            placeholder="name@example.com.br - siga o exemplo" required>
+                    </div>
+                    <div class="col mb-2">
+                        <label for="login" class="form-label">Login<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="login" readonly
+                            placeholder="gerado automáticamente">
+                    </div>
+                    <div class="col mb-2">
+                        <label for="senha" class="form-label">Senha <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="senha" onblur="CheckPassword(this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-6">
+                <div class="row">
+                    <div class="col mb-2">
+                        <label for="cep" class="form-label">Cep</label>
+                        <input type="number" class="form-control" id="cep" placeholder="Digite seu CEP">
+                    </div>
+                    <div class="col mb-2">
+                        <label for="endereco" class="form-label">Endereço</label>
+                        <input type="text" class="form-control" id="endereco">
+                    </div>
+                    <div class="col mb-2">
+                        <label for="complemento" class="form-label">Complemento</label>
+                        <input type="text" class="form-control" id="complemento"
+                            placeholder="apto, bloco, ponto referência">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-6">
+                <div class="row">
+                    <div class="col mb-2">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="bairro">
+                    </div>
+                    <div class="col mb-2">
+                        <label for="cidade" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" id="cidade">
+                    </div>
+                    <div class="col mb-2">
+                        <label for="estado" class="form-label">Estado</label>
+                        <input type="text" class="form-control" id="estado">
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="py-2 fs-5">Informações Profissionais:</h2>
+
+            <div class="col-md-12 mt-12">
+                <div class="row">
+                    <div class="col mb-2">
+                        <label for="github" class="form-label">GitHub <span class="text-danger">*</span></label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">github/</span>
+                            <input type="text" class="form-control" id="github" aria-describedby="inputGroupPrepend"
+                                placeholder="github/nome - siga o exemplo" required>
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <label for="academia" class="form-label">Academia<span class="text-danger">*</span></label>
+                        <select class="form-select" id="academia" required>
+                            <option value="">Selecione...</option>
+                            <option value="dot-net">Academia Atos - .NET</option>
+                            <option value="java">Academia Atos - Java</option>
+                        </select>
+                    </div>
+                    <div class="col mb-2">
+                        <label for="professor" class="form-label">Professor<span class="text-danger">*</span></label>
+                        <select class="form-select" id="professor" required>
+                            <option value="">Selecione...</option>
+                            <option value="1">Alexandre Zamberlan - Back-End</option>
+                            <option value="2">Deivison Pasa - Front-End></option>
+                            <option value="3">Ricardo Frohlich - Back-End</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group col-sm-12">
+                <label for="termostxt">Informativo sobre Lei 13.709/2018 - LGPD</label>
+                <textarea class="form-control" id="termostxt" rows="10" disabled>“A Lei Geral de Proteção de Dados Pessoais (LGPDP), Lei nº 13.709/2018, é a legislação brasileira que regula as atividades de tratamento de dados pessoais e que também altera os artigos 7º e 16 do Marco Civil da Internet. O Brasil passou a fazer parte dos países que contam com uma legislação específica para proteção de dados e da privacidade dos seus cidadãos. Outros regulamentos similares à LGPD no Brasil são o Regulamento Geral sobre a Proteção de Dados (GDPR) na União Europeia, que passou a ser obrigatório em 25 de maio de 2018 e aplicável a todos os países da União Europeia (UE), e o California Consumer Privacy Act of 2018 (CCPA), nos Estados Unidos da América, implementado através de uma iniciativa em âmbito estadual, na Califórnia, onde foi aprovado no dia 28 de junho de 2018 (AB 375). A legislação se fundamenta em diversos valores, como o respeito à privacidade; à autodeterminação informativa; à liberdade de expressão, de informação, comunicação e de opinião; à inviolabilidade da intimidade, da honra e da imagem; ao desenvolvimento econômico e tecnológico e a inovação; à livre iniciativa, livre concorrência e defesa do consumidor e aos direitos humanos de liberdade e dignidade das pessoas. A LGPD cria um conjunto de novos conceitos jurídicos (e.g. "dados pessoais", "dados pessoais sensíveis"), estabelece as condições nas quais os dados pessoais podem ser tratados, define um conjunto de direitos para os titulares dos dados, gera obrigações específicas para os controladores dos dados e cria uma série de procedimentos e normas para que haja maior cuidado com o tratamento de dados pessoais e compartilhamento com terceiros. A lei se aplica a toda informação relacionada a pessoa natural identificada ou que possa ser identificável e aos dados que tratem de origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico, sempre que os mesmos estiverem vinculados a uma pessoa natural.” 
+                Disponível em: https://pt.wikipedia.org/wili/Lei_Geral_de_Protecao_de_Dados_Pessoais
+                </textarea>
+            </div>
+            <div class="form-check mt-2">
+                <input type="checkbox" id="termos" required disabled></imput>
+                <label for="termos">Li e concordo com o informativo.</label>
+                <br /><br />
+                <input name="informacao" id="informacao-sim" type="radio" value="Sim" checked></input>
+                <label for="informacao-sim">Aceito receber informações via e-mail</label>
+                <br />
+                <input name="informacao" id="informacao-nao" type="radio" value="Nao"></input>
+                <label for="informacao-nao">Não aceito receber informações via e-mail</label>
+            </div>
+
+            <button class="w-100 btn btn-primary my-4" type="submit">Gravar as informações registradas</button>
+            <!--<button class="w-100 btn btn-primary my-4" type="reset">Limpar os dados registrados</button> -->
+
+            <h5 id="cabValidacao" class="mb-3 fs-5 d-none">Validação dos dados registrados:</h5>
+
+            <table id="table" class="table d-none">
+                <!-- d-none  -->
+                <tr style="text-align:center left;">
+                    <th class="conferencia">Nome:</th>
+                    <td id="t-nome" class="maiusculo"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Sobrenome:</th>
+                    <td id="t-sobrenome" class="maiusculo"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Email:</th>
+                    <td id="t-email" class="maiusculo"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Login:</th>
+                    <td id="t-login"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Senha:</th>
+                    <td id="t-senha"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">CEP:</th>
+                    <td id="t-cep"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Endereço:</th>
+                    <td id="t-endereco"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Complemento:</th>
+                    <td id="t-complemento" class="maiusculo"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Bairro:</th>
+                    <td id="t-bairro"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Cidade:</th>
+                    <td id="t-cidade"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Estado:</th>
+                    <td id="t-estado"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">GitHub:</th>
+                    <td id="t-github"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Acadêmia:</th>
+                    <td id="t-academia"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Professor:</th>
+                    <td id="t-professor"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Aceite dos Termos</th>
+                    <td id="t-termos"></td>
+                </tr>
+                <tr>
+                    <th class="conferencia">Aceite Receber Informações:</th>
+                    <td id="t-aceite"></td>
+                </tr>
+            </table>
+
+            <input class="w-100 btn btn-primary my-4" type="button" value="Recarregar Pagina"
+                onClick="window.location.reload()">
+
+        </form>
+    </div>
+</body>
+
+</html>
